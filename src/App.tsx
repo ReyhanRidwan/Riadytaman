@@ -19,10 +19,20 @@ import {
   Clock,
   ShieldCheck,
   Zap,
-  Users
+  Users,
+  Shrub,
+  ShoppingBag
 } from 'lucide-react';
 
 // --- Types ---
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  price?: string;
+}
+
 interface Testimonial {
   name: string;
   location: string;
@@ -44,6 +54,16 @@ interface PortfolioItem {
 }
 
 // --- Data ---
+const service1 = '/assets/images/regenerated_image_1778420943843.jpg';
+const service2 = '/assets/images/regenerated_image_1778420945957.jpg';
+const service3 = '/assets/images/regenerated_image_1778420942355.jpg';
+const service4 = '/assets/images/regenerated_image_1778420937910.jpg';
+const service5 = '/assets/images/regenerated_image_1778420936394.jpg';
+const service6 = '/assets/images/regenerated_image_1778420932096.jpg';
+const service7 = '/assets/images/regenerated_image_1778420930440.jpg';
+const product1 = '/assets/images/regenerated_image_1778423585427.jpg';
+const product2 = '/assets/images/regenerated_image_1778423586913.jpg';
+
 const WHATSAPP_NUMBER = "087846240574";
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}`;
 const BUSINESS_NAME = "riadytaman";
@@ -70,51 +90,71 @@ const SERVICES: Service[] = [
     title: "Taman Minimalis",
     description: "Desain simpel namun elegan, cocok untuk lahan terbatas di area perkotaan.",
     icon: <Home className="w-6 h-6" />,
-    image: "https://scontent.xx.fbcdn.net/v/t1.15752-9/658372854_1669863117531731_3178817597552396113_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=QnPadBH4fsMQ7kNvwFGklQf&_nc_oc=AdpsexyLgpye-M8H7Y3dLhLAvZ0Td_ma09ZyFDGGVk2B7En_eg2xr92JnUTizyq1-Y9OL_PDSp17VTSNvu3h2Ukp&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&_nc_ss=7a32e&oh=03_Q7cD5AHJqVj7fNrpj-Neq68ZhUfGZWd0nR0n8oSwJw7VEqyB0Q&oe=69F72CB0"
+    image: service1
   },
   {
     title: "Taman Tropis",
     description: "Hadirkan nuansa hutan tropis yang rimbun dan eksotis di halaman Anda.",
     icon: <Trees className="w-6 h-6" />,
-    image: "https://scontent.xx.fbcdn.net/v/t1.15752-9/658917299_1254254786860905_4129162894248003456_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9f807c&_nc_ohc=K7J2P7Xd0TcQ7kNvwEmK3e3&_nc_oc=AdqizmnX7TZtC0wysxB92RVzme--Q81VphT0C5dw7LUREaGdzfJDX0XQj_aIRyw6g-OpIM8iE2UTIZ9nwq-u0UKe&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&_nc_ss=7a32e&oh=03_Q7cD5AFIJq2BOcWsY3XqVLDr1fdW1C5MTDabEFM4OVBhREN_FA&oe=69F75328"
+    image: service2
   },
   {
     title: "Taman Kering",
     description: "Low maintenance dengan paduan batu hias dan tanaman sukulen yang menawan.",
     icon: <LayoutGrid className="w-6 h-6" />,
-    image: "https://scontent.xx.fbcdn.net/v/t1.15752-9/661444452_823178730279611_7379588697716753328_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_ohc=IYxytN_cILoQ7kNvwFQ1kSC&_nc_oc=Adp0UMUqyX2-4zJldkvNyXdW5pytlW0QZy5Ioy5CozWzhL3BzThUlNwIjeBYHUfVBiof_5GNt41w076pwzRKVc3w&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&_nc_ss=7a32e&oh=03_Q7cD5AEroGxtv1QMAH_mDychaCJ2YztBIwnkelbPC0KIcw0wBg&oe=69F73EE8"
+    image: service3
   },
   {
     title: "Vertical Garden",
     description: "Solusi penghijauan pada dinding untuk area sempit agar tetap terasa asri.",
     icon: <Leaf className="w-6 h-6" />,
-    image: "https://scontent.xx.fbcdn.net/v/t1.15752-9/661542538_2814491302258261_7081437908575069863_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=9f807c&_nc_ohc=dOhvMHK4hU4Q7kNvwGWYoLu&_nc_oc=AdrfHAAPb1H_gbfUSxpzDx67EmUekwvcv-1DzbJZ2TfyqupLINdaop2q31E1IvsnnwGh_OFwA7Ju4VCY-8IV8Ja0&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&_nc_ss=7a32e&oh=03_Q7cD5AE9JjZlZ97gz4kjze1xQJ5DZeuqubMl9jCR4lJqD9fMYA&oe=69F72DA9"
+    image: service4
   },
   {
     title: "Kolam Hias",
     description: "Pembuatan kolam koi dan air mancur dengan gemericik air yang menenangkan.",
     icon: <Waves className="w-6 h-6" />,
-    image: "https://scontent.xx.fbcdn.net/v/t1.15752-9/658327752_957342713534054_186065741987715165_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_ohc=y1PppfLH7zwQ7kNvwEu04nx&_nc_oc=AdqfarvT4MlFzROGfFzC2LcbmWkBxbC7rjoKxiZrBiqVrnpcHOUsjlqvAVQ7HQe0I9GkVgcVdY8KpVafKN9zEhhB&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&_nc_ss=7a32e&oh=03_Q7cD5AE71vZv7x2HW-16ws4GbC-Hj_eK2p8pP5GNTpAGMJZpmQ&oe=69F73AB7"
+    image: service5
   },
   {
     title: "Hardscape",
     description: "Pemasangan batu alam, gazebo, dan struktur taman untuk estetika maksimal.",
     icon: <LayoutGrid className="w-6 h-6" />,
-    image: "https://scontent.xx.fbcdn.net/v/t1.15752-9/664731380_1857324728309573_836257247417149924_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=9f807c&_nc_ohc=EC50d4os7eYQ7kNvwGGxkBv&_nc_oc=Adqz2lZI60sgg0OkkO8t9YsuA9NYJfgFywTNcbCWAdvwKyJbqeR8RF7GyhR2ytkpTNs8262oo-ct87D-m6k0dl-m&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&_nc_ss=7a32e&oh=03_Q7cD5AHQPb9k9trKg5ahicICWFjgEyjYpOwhvFVSVftFzlkpNA&oe=69F747BF"
+    image: service6
+  },
+  {
+    title: "Zen Garden",
+    description: "Taman bergaya Jepang yang tenang dengan elemen pasir, batu, dan tanaman bonsai.",
+    icon: <Shrub className="w-6 h-6" />,
+    image: service7
   }
 ];
 
 const PORTFOLIO_RAW: PortfolioItem[] = [
-  { id: 1, category: "Minimalis", title: "Project A", image: PROJECT_A_IMAGE },
-  { id: 2, category: "Tropis", title: "Project B", image: "https://instagram.fcgk33-1.fna.fbcdn.net/v/t1.15752-9/664112044_1107238804917949_4962049671179376389_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=109&ccb=7-5&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOnRlc3QiXX0%3D&_nc_ohc=q09EhcFDU0gQ7kNvwEkUf_M&_nc_oc=AdrD7Wz0RonDOUdzNLsssPcnRZt-d9h60EWfaOsQNocKPSqXCeObzPbG0eEONtQ2Y1Cn56cBwwESgHScNX1wgD9E&_nc_zt=23&_nc_ht=instagram.fcgk33-1.fna&_nc_ss=7a3a8&oh=03_Q7cD5AFYE84WEvD9ZMS6MIWAagPzd7NpkKB5UCJqsrozG2gWOw&oe=69FB1446" },
-  { id: 3, category: "Minimalis", title: "Project C", image: "https://instagram.fcgk33-1.fna.fbcdn.net/v/t1.15752-9/659650849_2908540809509293_3257047460079622925_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=104&ccb=7-5&_nc_sid=fc17b8&efg=eyJxZV9ncm91cHMiOlsiaWdkX2Jlc3RfZWZmb3J0X2ltYWdlOnRlc3QiXX0%3D&_nc_ohc=TUfHFFOWgKEQ7kNvwF_7-WW&_nc_oc=AdrGSW-6JWg1tENjLe2a2oE8TNP5YPAZm0-s3RVndrjoLejKG4QE_M8gmFrOTXpXtv6p6Zj94OWlBWUoCvp6YoU2&_nc_zt=23&_nc_ht=instagram.fcgk33-1.fna&_nc_ss=7a3a8&oh=03_Q7cD5AFFRQqyENBEFTny3IDGz0LPoIHmJsUfewBtFgR7TZZKNA&oe=69FB2A88" },
+  { id: 1, category: "Minimalis", title: "Project Minimalis 1", image: service1 },
+  { id: 2, category: "Tropis", title: "Project Tropis 1", image: service2 },
+  { id: 3, category: "Kering", title: "Project Kering 1", image: service3 },
+  { id: 4, category: "Vertical Garden", title: "Vertical Garden Project", image: service4 },
+  { id: 5, category: "Kolam Hias", title: "Kolam Koi & Hias", image: service5 },
+  { id: 6, category: "Hardscape", title: "Hardscape & Stone", image: service6 },
+  { id: 7, category: "Zen Garden", title: "Japanese Zen Garden", image: service7 },
+  { id: 8, category: "Minimalis", title: "Modern Garden", image: service1 },
+  { id: 9, category: "Zen Garden", title: "Indoor Zen Garden", image: service7 }
+];
 
-
-  { id: 4, category: "Minimalis", title: "Taman Minimalis", image: "https://scontent.xx.fbcdn.net/v/t1.15752-9/658372854_1669863117531731_3178817597552396113_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=QnPadBH4fsMQ7kNvwFGklQf&_nc_oc=AdpsexyLgpye-M8H7Y3dLhLAvZ0Td_ma09ZyFDGGVk2B7En_eg2xr92JnUTizyq1-Y9OL_PDSp17VTSNvu3h2Ukp&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&_nc_ss=7a32e&oh=03_Q7cD5AHJqVj7fNrpj-Neq68ZhUfGZWd0nR0n8oSwJw7VEqyB0Q&oe=69F72CB0" },
-  { id: 5, category: "Kering", title: "Taman Kering", image: "https://scontent.xx.fbcdn.net/v/t1.15752-9/661444452_823178730279611_7379588697716753328_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_ohc=IYxytN_cILoQ7kNvwFQ1kSC&_nc_oc=Adp0UMUqyX2-4zJldkvNyXdW5pytlW0QZy5Ioy5CozWzhL3BzThUlNwIjeBYHUfVBiof_5GNt41w076pwzRKVc3w&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&_nc_ss=7a32e&oh=03_Q7cD5AEroGxtv1QMAH_mDychaCJ2YztBIwnkelbPC0KIcw0wBg&oe=69F73EE8" },
-  { id: 6, category: "Vertical Garden", title: "Vertical Garden", image: "https://scontent.xx.fbcdn.net/v/t1.15752-9/661542538_2814491302258261_7081437908575069863_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=9f807c&_nc_ohc=dOhvMHK4hU4Q7kNvwGWYoLu&_nc_oc=AdrfHAAPb1H_gbfUSxpzDx67EmUekwvcv-1DzbJZ2TfyqupLINdaop2q31E1IvsnnwGh_OFwA7Ju4VCY-8IV8Ja0&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&_nc_ss=7a32e&oh=03_Q7cD5AE9JjZlZ97gz4kjze1xQJ5DZeuqubMl9jCR4lJqD9fMYA&oe=69F72DA9" },
-  { id: 7, category: "Kolam Hias", title: "Kolam Hias", image: "https://scontent.xx.fbcdn.net/v/t1.15752-9/658327752_957342713534054_186065741987715165_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_ohc=y1PppfLH7zwQ7kNvwEu04nx&_nc_oc=AdqfarvT4MlFzROGfFzC2LcbmWkBxbC7rjoKxiZrBiqVrnpcHOUsjlqvAVQ7HQe0I9GkVgcVdY8KpVafKN9zEhhB&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&_nc_ss=7a32e&oh=03_Q7cD5AE71vZv7x2HW-16ws4GbC-Hj_eK2p8pP5GNTpAGMJZpmQ&oe=69F73AB7" },
-  { id: 8, category: "Hardscape", title: "Hardscape", image: "https://scontent.xx.fbcdn.net/v/t1.15752-9/664731380_1857324728309573_836257247417149924_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=9f807c&_nc_ohc=EC50d4os7eYQ7kNvwGGxkBv&_nc_oc=Adqz2lZI60sgg0OkkO8t9YsuA9NYJfgFywTNcbCWAdvwKyJbqeR8RF7GyhR2ytkpTNs8262oo-ct87D-m6k0dl-m&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&_nc_ss=7a32e&oh=03_Q7cD5AHQPb9k9trKg5ahicICWFjgEyjYpOwhvFVSVftFzlkpNA&oe=69F747BF" }
+const PRODUCTS: Product[] = [
+  {
+    id: 1,
+    title: "Bonsai Olive Tree Artificial",
+    description: "Replika pohon zaitun bonsai berkualitas premium untuk sentuhan klasik Mediterania tanpa perawatan rutin.",
+    image: product1
+  },
+  {
+    id: 2,
+    title: "Moss Wall",
+    description: "Dinding hijau dari lumut abadi (stabilized moss) yang menghadirkan nuansa alami ke dalam ruangan tanpa perlu disiram.",
+    image: product2
+  }
 ];
 
 const TESTIMONIALS: Testimonial[] = [
@@ -140,6 +180,7 @@ const Navbar = () => {
     { name: 'Tentang', href: '#about' },
     { name: 'Layanan', href: '#services' },
     { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Produk', href: '#products' },
     { name: 'Kontak', href: '#contact' },
   ];
 
@@ -442,7 +483,7 @@ const Services = () => {
 
 const Portfolio = () => {
   const [filter, setFilter] = useState('Semua');
-  const categories = ['Semua', 'Minimalis', 'Tropis', 'Vertical Garden', 'Kolam Hias', 'Hardscape', 'Kering'];
+  const categories = ['Semua', 'Minimalis', 'Tropis', 'Vertical Garden', 'Kolam Hias', 'Hardscape', 'Kering', 'Zen Garden'];
 
   const filteredItems = filter === 'Semua' 
     ? PORTFOLIO_RAW 
@@ -493,11 +534,11 @@ const Portfolio = () => {
                 <img 
                   src={item.image} 
                   alt={item.title} 
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 relative z-10"
                   loading="lazy"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-10">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-10 z-20 pointer-events-none">
                   <span className="text-primary font-bold text-[10px] uppercase tracking-[0.3em] mb-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{item.category}</span>
                   <h4 className="text-white text-2xl font-display font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-700 delay-75">{item.title}</h4>
                 </div>
@@ -505,6 +546,61 @@ const Portfolio = () => {
             ))}
           </AnimatePresence>
         </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const Products = () => {
+  return (
+    <section id="products" className="py-32 bg-gray-50 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Koleksi Kami</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-gray-900">Produk <span className="text-primary italic">Unggulan</span></h2>
+          <p className="text-gray-500 mt-6 text-lg font-light italic">"Dekorasi alami eksklusif untuk mempercantik interior dan eksterior Anda."</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          {PRODUCTS.map((product, idx) => (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.2 }}
+              className="group bg-white rounded-[3rem] overflow-hidden shadow-xl border border-white hover:shadow-2xl transition-all duration-500"
+            >
+              <div className="relative h-[400px] overflow-hidden">
+                <img 
+                  src={product.image} 
+                  alt={product.title} 
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+                <div className="absolute top-8 left-8">
+                  <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl text-primary shadow-lg">
+                    <ShoppingBag size={24} />
+                  </div>
+                </div>
+              </div>
+              <div className="p-10 md:p-12 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">{product.title}</h3>
+                <p className="text-gray-500 leading-relaxed mb-8 font-light italic">
+                  {product.description}
+                </p>
+                <a 
+                  href={`${WHATSAPP_LINK}?text=Halo%20riadytaman,%20saya%20tertarik%20dengan%20produk%20${encodeURIComponent(product.title)}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center bg-gray-950 text-white px-8 py-4 rounded-full font-bold text-sm tracking-widest uppercase hover:bg-primary transition-all group/btn"
+                >
+                  Tanya Produk <ArrowRight size={16} className="ml-3 transition-transform group-hover/btn:translate-x-1" />
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -691,6 +787,8 @@ const Footer = () => {
               <li><a href="#about" className="hover:text-primary transition-colors flex items-center group"><ArrowRight size={14} className="mr-3 opacity-0 group-hover:opacity-100 transition-opacity" /> Tentang</a></li>
               <li><a href="#services" className="hover:text-primary transition-colors flex items-center group"><ArrowRight size={14} className="mr-3 opacity-0 group-hover:opacity-100 transition-opacity" /> Layanan</a></li>
               <li><a href="#portfolio" className="hover:text-primary transition-colors flex items-center group"><ArrowRight size={14} className="mr-3 opacity-0 group-hover:opacity-100 transition-opacity" /> Portfolio</a></li>
+              <li><a href="#products" className="hover:text-primary transition-colors flex items-center group"><ArrowRight size={14} className="mr-3 opacity-0 group-hover:opacity-100 transition-opacity" /> Produk</a></li>
+              <li><a href="#contact" className="hover:text-primary transition-colors flex items-center group"><ArrowRight size={14} className="mr-3 opacity-0 group-hover:opacity-100 transition-opacity" /> Kontak</a></li>
             </ul>
           </div>
 
@@ -751,6 +849,7 @@ export default function App() {
       <About />
       <Services />
       <Portfolio />
+      <Products />
       <USP />
       <Process />
       <Testimonials />
